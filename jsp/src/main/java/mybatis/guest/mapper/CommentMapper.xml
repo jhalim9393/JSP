@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CommentMapper">
+
+	<insert id="insertComment" parameterType="mybatis.guest.model.Comment">
+		INSERT INTO comment_tab
+		VALUES (
+			#{commentNo},
+			#{userId},
+			#{commentContent},
+			now()
+		)
+	</insert>
+
+
+	<!-- 정확하게 넘겨주기 위해 parameter 를 hashmap 으로 설정 -->
+	<select id="selectComment" parameterType="hashmap" resultType="comment">
+		SELECT *
+ 	 	FROM comment_tab
+		<where>
+			<if test="commentNo != null">
+				comment_no = #{commentNo}
+			</if>
+		</where>
+	</select>
+	
+	
+	
+</mapper>
