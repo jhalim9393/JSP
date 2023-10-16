@@ -69,7 +69,7 @@ public class CommentRepository
 			
 			// 레코드 하나 가져올거면 selectOne , 여러개면 selectList
 			// 해시 맵을 넘겨주기
-			return sess.selectOne("CommentMapper.selectComment , map");
+			return sess.selectOne("CommentMapper.selectComment" , map);
 			
 		} finally {
 			sess.close();

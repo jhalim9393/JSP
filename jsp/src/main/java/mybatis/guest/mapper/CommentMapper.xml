@@ -26,6 +26,12 @@
 		</where>
 	</select>
 	
+	<update id="updateComment" parameterType="mybatis.guest.model.Comment">
+		UPDATE comment_tab
+		SET comment_content = #{commentContent}
+	
+	</update>
+	
 	
 	
 </mapper>

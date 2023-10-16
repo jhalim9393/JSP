@@ -5,7 +5,7 @@
       
   <!-- 키에 해당하는 글번호를 넘겨받아 서비스의 메소드 호출  -->
   <% 
-  long commentNo = Integer.parseInt( request.getParameter("cId")); 
+  long commentNo = Integer.parseInt(request.getParameter("cId")); 
   Comment comment = CommentService.getInstance().selectCommentByPK(commentNo);
   %>
 

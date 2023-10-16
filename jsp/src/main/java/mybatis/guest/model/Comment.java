@@ -2,7 +2,7 @@ package mybatis.guest.model;
 
 import lombok.Data;
 
-@Data
+@Data 
 public class Comment {
 		
 	private long commentNo;
