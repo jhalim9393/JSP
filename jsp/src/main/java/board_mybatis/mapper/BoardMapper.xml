@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+ 
+<mapper namespace="BoardMapper">
+
+<select id="selectBoard" resultType="BoardVO">
+	SELECT seq, title, writer, regdate, cnt
+	FROM board_ex
+</select>
+
+<insert id="insertBoard" parameterType="BoardVO">  
+	
+	INSERT INTO board_ex(title, writer, content, pass, regdate, cnt)
+	VALUES( 
+		#{title},					<!-- BoardVO에 있는 이름과 같아야함 -->
+		#{writer},
+		#{content},
+		#{pass},
+		now(),
+		0
+	)
+</insert>
+
+<select id="selectBoardByPk" parameterType="int" resultType="BoardVO">
+	
+	SELECT * FROM board_ex
+	WHERE seq = #{article_id} <!-- repository에 받아오는 인자 이름 -->
+</select>
+
+<delete id="deleteBoard" parameterType="BoardVO">
+	DELETE FROM board_ex
+	WHERE seq = #{seq} AND pass = #{pass}
+
+</delete>
+
+<update id="updateBoard" parameterType="BoardVO">
+	UPDATE board_ex SET title = #{title}, content = #{content}
+	WHERE seq = #{seq} AND pass = #{pass}
+
+</update>
+
+
+</mapper>

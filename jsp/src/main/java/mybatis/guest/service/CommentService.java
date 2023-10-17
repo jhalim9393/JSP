@@ -24,9 +24,12 @@ public class CommentService {
 	}
 	
 	
-	public List<Comment> selectComment() {
-
-		return repo.selectComment();
+	public List<Comment> selectComment(String searchKey, String searchWord) {
+		System.out.println(searchKey + "/" + searchWord); //  ( 보내는 데이터 )
+		
+		List<Comment> list = repo.selectComment(searchKey, searchWord); // Repository
+		System.out.println("CommentService.selectComment : " + list.size());  // Service ( 받는 데이터 )
+		return list;
 	}
 	
 	public Comment selectCommentByPK(long commentNo) {

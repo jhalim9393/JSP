@@ -43,13 +43,28 @@ public class CommentRepository
 	} // end of insertComment()
 	
 	
-	public List<Comment> selectComment() {
+	public List<Comment> selectComment(String searchKey, String searchWord) {
 		// Connection 얻어오기
 		SqlSession sess = getSqlSessionFactory().openSession();
 		
 		try {
+			
+			HashMap map = new HashMap();
+			map.put("searchKey", searchKey); // user_id가 searchKey로 들어오고, 입력값이 searchWord로 들어옴
+			map.put("searchWord", searchWord);
+			
+			/*
+			 * 		[1] 			key					value
+			 * 					searchKey			   user_id
+			 * 					searchWord		   입력값
+			 * 
+			 * 		[2]			key					value
+			 * 					  user_id			    입력값
+			 */
+			
+			
 			// 레코드 하나 가져올거면 selectOne , 여러개면 selectList
-			return sess.selectList("CommentMapper.selectComment");
+			return sess.selectList("CommentMapper.selectComment", map);
 			
 		} finally {
 			sess.close();

@@ -4,6 +4,7 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="CommentMapper">
 
+	<!-- 입력했을 때  -->
 	<insert id="insertComment" parameterType="mybatis.guest.model.Comment">
 		INSERT INTO comment_tab
 		VALUES (
@@ -20,11 +21,28 @@
 		SELECT *
  	 	FROM comment_tab
 		<where>
-			<if test="commentNo != null">
+			<if test="commentNo != null"> <!-- where 조건 문을 test 안에 기술 -->
 				comment_no = #{commentNo}
+			</if>
+			<if test="searchKey != null">
+				${searchKey} LIKE '%${searchWord}%'
 			</if>
 		</where>
 	</select>
+	
+	<!-- 
+			JDBC 전송 객체
+			- Statement
+			- PrepareStatement : 문자열 지정시 '' 자동 처리
+			
+			Mybatis 에서
+			- Statement 역할 : ${변수명}
+			- PrepareStatement 역할 : #{변수명}
+	
+	 -->
+	
+	
+	
 	
 	<update id="updateComment" parameterType="mybatis.guest.model.Comment">
 		UPDATE comment_tab
