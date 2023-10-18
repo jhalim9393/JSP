@@ -9,4 +9,16 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <servlet>
+	<servlet-name>SimpleControl</servlet-name>
+  	<servlet-class>mvc.simple.SimpleControl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>SimpleControl</servlet-name>
+  	<url-pattern>/SimpleControl</url-pattern>
+  	<url-pattern>*.kim</url-pattern> <!-- 확장자는 내 마음 start.jsp에 있는 MVC 링크와 같아야 함 -->
+  	
+  </servlet-mapping>
+  
 </web-app>
